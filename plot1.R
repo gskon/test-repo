@@ -1,0 +1,44 @@
+##Loading and cleaning the data
+
+data <- read.table("household_power_consumption.txt", header=TRUE, sep=";", na.strings="?", colClasses=c('character','character','numeric','numeric','numeric','numeric','numeric','numeric','numeric'))
+
+# format date to Type Date
+data$Date <- as.Date(data$Date, "%d/%m/%Y")
+
+#filter data set for assignment 
+data <- subset(data,Date >= as.Date("2007-2-1") & Date <= as.Date("2007-2-2"))
+
+# making sure rows have no missing values across the entire sequence
+
+data <- data[complete.cases(data),]
+
+#combining Date and Time column
+
+DateTime <- paste(data$Date, data$Time)
+
+#Name the vector
+
+DateTime <- setNames(DateTime, "DateTime")
+
+# Remove Date and Time column
+
+data <- data[ ,!names(data) %in% c("Date","Time")]
+
+#add DateTime column
+
+data <- cbind(DateTime, data)
+
+# Format DateTime column
+
+data$DateTime <- as.POSIXct(DateTime)
+
+#draw the graph
+
+hist(data$Global_active_power, main="Global Active Power", xlab = "Global Active Power (kilowatts)", col="red")
+
+# saving the graph in file
+dev.copy(png, "plot1.png", height=480, width=480)
+
+#switching back to monitor
+dev.off()
+
