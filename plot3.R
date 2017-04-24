@@ -33,7 +33,7 @@ data <- cbind(DateTime, data)
 data$DateTime <- as.POSIXct(DateTime)
 
 
-with(data, { plot(Sub_metering_1 ~ DateTime, type = "l", ylab = "Energy Sub metering", xlab = "")
+with(data, { plot(Sub_metering_1 ~ DateTime, type = "l", ylab = "Global Active Power (kilowatts)", xlab = "")
     lines(Sub_metering_2 ~ DateTime, col = 'Red')
     lines(Sub_metering_3 ~ DateTime, col = 'Blue')
 })
