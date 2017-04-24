@@ -47,7 +47,7 @@ with(data, {
              bty = "n",
              legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
      plot(Global_reactive_power ~ DateTime, type = "l", 
-          ylab = "Global_Rective_power", xlab = "datetime")
+          ylab = "Global_rective_power", xlab = "datetime")
 })
 
 dev.copy(png, "plot4.png", height=480, width=480)
